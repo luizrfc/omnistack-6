@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const cors = require('cors')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use((req, res, next) => { //para atribuir o Socket.IO para toda requisição
     return next()
 })
 
+app.use(morgan())
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
