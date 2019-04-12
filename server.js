@@ -6,6 +6,7 @@ const morgan = require('morgan')
 
 const app = express()
 
+app.use(morgan('dev'))
 app.use(cors())
 
 const server = require('http').Server(app) //recebe requisições via http
@@ -26,7 +27,6 @@ app.use((req, res, next) => { //para atribuir o Socket.IO para toda requisição
     return next()
 })
 
-app.use(morgan())
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true

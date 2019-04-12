@@ -8,7 +8,7 @@ class FileController {
         console.log(req.file)
 
         const file = await File.create({
-            title: req.body.title,
+            title: (req.body.title) ? req.body.title : req.file.originalname,
             original: req.file.originalname,
             path: req.file.key
         })
