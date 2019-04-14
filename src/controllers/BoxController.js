@@ -32,7 +32,7 @@ class BoxController {
     }
 
     async remove(req, res) {
-        await Box.remove({ _id: req.body.id })
+        await Box.remove({ _id: req.params.id })
         return res.json({ message: 'Removido com sucesso'})
     }
 }
