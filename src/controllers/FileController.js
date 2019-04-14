@@ -21,6 +21,20 @@ class FileController {
 
         return res.json(file)
     }
+
+    async remove(req, res) {
+        const fileId = req.params.id
+        let indexFile = 0
+        await File.remove({ _id: fileId })
+        let box = await Box.find({ files: fileId })
+        box.map((file,index) => {
+            if(file === fileId) indexFile = index
+        })
+        box.splice(indexFile, 1)
+        const resultBox = await Box.update({ _id: box._id}, box)
+
+        return res.json({ message: 'Registro removido com sucesso', box, resultBox })
+    }
 }
 
 module.exports = new FileController()

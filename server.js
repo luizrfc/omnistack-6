@@ -37,4 +37,4 @@ app.use('/files', express.static(path.resolve(__dirname, 'temp')))
 
 app.use(require('./src/routes'))
 
-server.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || 4000)

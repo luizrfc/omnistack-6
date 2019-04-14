@@ -18,6 +18,23 @@ class BoxController {
         })
         return res.json(box)
     }
+
+    async showAll(req, res){
+        const box = await Box.find().populate({
+            path: 'files',
+            options: {
+                sort: {
+                    createdAt: -1
+                }
+            }
+        })
+        return res.json(box)
+    }
+
+    async remove(req, res) {
+        await Box.remove({ _id: req.body.id })
+        return res.json({ message: 'Removido com sucesso'})
+    }
 }
 
 module.exports = new BoxController()
